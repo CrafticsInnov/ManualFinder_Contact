@@ -1,0 +1,11 @@
+{
+  "name": "ManualFinder",
+  "description": "AI-powered product recognition and instant manual access for users and manufacturers.",
+  "publisher": "Craftics",
+  "publisherWebsite": "https://manualfinder.ai",
+  "supportUrl": "https://manualfinder.ai/contact",
+  "privacyUrl": "https://manualfinder.ai/privacy",
+  "termsUrl": "https://manualfinder.ai/terms",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
