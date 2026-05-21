@@ -19,11 +19,6 @@ export function ContactForm() {
     const email = String(formData.get("email") || "").trim();
     const message = String(formData.get("message") || "").trim();
 
-    const subject = encodeURIComponent(`[ManualFinder Contact] ${role.toUpperCase()} - ${name}`);
-    const body = encodeURIComponent(
-      `Role: ${role}\nName: ${name}\nCompany: ${company || "N/A"}\nEmail: ${email}\n\nMessage:\n${message}`
-    );
-
     fetch('/api/send-mail', {
       method: 'POST',
       headers: {
