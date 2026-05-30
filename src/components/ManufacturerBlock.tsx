@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Cpu, MessageSquare, Globe, ShieldCheck } from "lucide-react";
+import { BotMessageSquare, ScanSearch, Globe, HandCoins } from "lucide-react";
 import { useLanguage } from "../contexts/LanguageContext";
 
 export function ManufacturerBlock() {
@@ -7,17 +7,17 @@ export function ManufacturerBlock() {
 
   const benefits = [
     {
-      icon: MessageSquare,
+      icon: ScanSearch,
       title: t.manufacturer.benefit1Title,
       description: t.manufacturer.benefit1Desc
     },
     {
-      icon: Cpu,
+      icon: BotMessageSquare,
       title: t.manufacturer.benefit2Title,
       description: t.manufacturer.benefit2Desc
     },
     {
-      icon: ShieldCheck,
+      icon: HandCoins,
       title: t.manufacturer.benefit3Title,
       description: t.manufacturer.benefit3Desc
     }
@@ -33,7 +33,7 @@ export function ManufacturerBlock() {
           </div>
           <h2 className="text-4xl font-sans font-light mb-6 leading-tight">
             {t.manufacturer.title.split(". ")[0]}. <br />
-            <span className="font-normal text-blue-500">{t.manufacturer.title.split(". ")[1]}</span>
+            <span className="font-normal text-blue-500">{t.manufacturer.title.split(". ")[1] || ""}</span>
           </h2>
           <p className="text-white/40 mb-8 leading-relaxed">
             {t.manufacturer.description}

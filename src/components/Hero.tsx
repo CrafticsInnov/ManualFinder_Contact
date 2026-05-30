@@ -28,10 +28,10 @@ export function Hero({ onNextAction }: Props) {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.2 }}
-        className="text-6xl md:text-8xl lg:text-9xl font-sans font-extralight text-gradient leading-[0.9] mb-8"
+        className="text-4xl md:text-6xl lg:text-7xl font-sans font-extralight text-gradient leading-[0.95] mb-8"
       >
-        {t.hero.title.split(". ")[0]}. <br />
-        <span className="font-normal">{t.hero.title.split(". ")[1]}</span>
+        {t.hero.title1} <br />
+        <span className="font-normal">{t.hero.title2}</span>
       </motion.h1>
 
       <motion.p

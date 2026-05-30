@@ -1,10 +1,20 @@
 import { motion } from "motion/react";
-import { ManualFinderLogo } from "./ManualFinderLogo";
+import { useEffect, useState } from "react";
+import logoManualFinder from "../assets/images/logoManualFinder.png";
 import { useLanguage } from "../contexts/LanguageContext";
 import { Language } from "../translations";
 
 export function Navbar() {
   const { language, setLanguage, t } = useLanguage();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 24);
+    };
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const langs: { id: Language; label: string }[] = [
     { id: "fr", label: "FR" },
@@ -17,10 +27,19 @@ export function Navbar() {
     <motion.nav 
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="fixed top-0 inset-x-0 z-50 px-6 py-4 flex justify-between items-center bg-linear-to-b from-black/50 to-transparent"
+      className={`fixed top-0 inset-x-0 z-50 px-6 py-4 flex justify-between items-center transition-colors duration-300 
+        ${scrolled 
+          ? "bg-gradient-to-b from-black/90 via-black/60 to-transparent" 
+          : "bg-gradient-to-b from-black/60 via-black/30 to-transparent"}
+      `}
     >
       <div className="flex items-center gap-3">
-        <ManualFinderLogo className="w-10 h-10" />
+        <img
+          src={logoManualFinder}
+          alt="ManualFinder Logo"
+          className="w-10 h-10 object-contain"
+          style={{ marginLeft: 10, marginRight: 14 }}
+        />
         <span className="font-sans font-medium tracking-[0.1em] text-lg uppercase hidden sm:block">
           Manual<span className="text-blue-500 font-bold">Finder</span>
         </span>

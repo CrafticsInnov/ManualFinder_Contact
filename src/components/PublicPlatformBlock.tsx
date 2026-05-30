@@ -1,9 +1,17 @@
 import { motion } from "motion/react";
 import { Smartphone, Laptop, Zap, Users } from "lucide-react";
 import { useLanguage } from "../contexts/LanguageContext";
+import manualfinderAssistance from "../assets/images/manualfinderAssistance.png";
 
 export function PublicPlatformBlock() {
   const { t } = useLanguage();
+  const title = t.public.title;
+  const highlightMatch = title.match(/\[\[(.+?)\]\]/);
+  const highlightedText = highlightMatch?.[1] ?? "";
+  const [beforeHighlight, afterHighlightRaw] = highlightMatch
+    ? title.split(`[[${highlightedText}]]`)
+    : [title, ""];
+  const afterHighlight = afterHighlightRaw ?? "";
 
   return (
     <section className="py-24 px-6 max-w-7xl mx-auto">
@@ -22,16 +30,14 @@ export function PublicPlatformBlock() {
               <span className="text-xs font-mono uppercase tracking-widest text-white/40">{t.public.badge}</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-sans font-light mb-6 leading-tight">
-              {t.public.title.split(" with ").length > 1 ? (
+              {highlightMatch ? (
                 <>
-                  {t.public.title.split(" with ")[0]} <br />
-                  <span className="font-normal text-blue-500">with {t.public.title.split(" with ")[1]}</span>
+                  {beforeHighlight}
+                  <span className="font-normal text-blue-500">{highlightedText}</span>
+                  {afterHighlight}
                 </>
               ) : (
-                <>
-                  {t.public.title.split(" audience")[0]} <br />
-                  <span className="font-normal text-blue-500">{t.public.title.includes("audience") ? "Your Global Audience." : t.public.title}</span>
-                </>
+                title
               )}
             </h2>
             <p className="text-white/40 mb-8 text-lg leading-relaxed">
@@ -61,16 +67,11 @@ export function PublicPlatformBlock() {
           </div>
 
           <div className="lg:w-1/2 relative">
-            <div className="relative z-10 p-8 rounded-3xl bg-linear-to-br from-white/10 to-transparent border border-white/10 backdrop-blur-sm">
-               <div className="aspect-[4/5] bg-black/40 rounded-2xl overflow-hidden relative flex items-center justify-center border border-white/5">
-                  <div className="absolute inset-0 bg-mesh opacity-10" />
-                  <div className="text-center p-8">
-                     <Smartphone className="w-16 h-16 text-blue-500/40 mx-auto mb-6" />
-                     <div className="hologram-text mb-2 text-blue-400">SCANNING_ACTIVE</div>
-                     <div className="text-2xl font-mono opacity-20">|||||||||||||||||</div>
-                  </div>
-               </div>
-            </div>
+            <img
+              src={manualfinderAssistance}
+              alt="ManualFinder assistance interface"
+              className="relative z-10 w-full max-w-[330px] lg:max-w-[330px] h-auto object-contain mx-auto"
+            />
             {/* Visual Accents */}
             <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-600/20 blur-[80px] rounded-full" />
           </div>
